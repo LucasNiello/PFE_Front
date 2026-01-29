@@ -1,0 +1,24 @@
+// 1. A Melhor Extensão: :emojisense:
+
+// Nome: :emojisense: (do autor Matt Bierner).
+
+// Como funciona: Você digita dois pontos : e começa a escrever o nome do emoji (em inglês). O VS Code abre uma janelinha sugerindo os ícones.
+
+// Exemplo:
+
+// Você digita: :fire
+
+// Ele sugere: 🔥
+
+// Você aperta Enter e ele insere o ícone.
+
+// 2. A Opção "Sem Instalar Nada" (Atalho do Sistema) 🏆
+// A maioria dos desenvolvedores "Sênior" usa os atalhos do próprio Windows ou Mac, porque é mais rápido e não pesa no VS Code.
+
+// No Windows: Segure a tecla Windows e aperte . (ponto final).
+
+// Win + .
+
+// Vai abrir uma janelinha flutuante com todos os emojis. É só clicar ou digitar para buscar.
+
+// No Mac: Segure Control + Command + Espaço.
