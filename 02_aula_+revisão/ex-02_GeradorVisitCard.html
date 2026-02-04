@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style_Ex02.css">
+    <script src="script_Ex02.js" defer></script>
+</head>
+<body>
+
+    <main class="main-wrapper">
+        <section class="editor-pane">
+            <h2>Card Editor</h2>
+            
+            <div class="field">
+                <label>Full Name</label>
+                <input type="text" id="inputName" placeholder="Enter your name">
+            </div>
+
+            <div class="field">
+                <label>Job Title</label>
+                <input type="text" id="inputRole" placeholder="e.g. Senior Developer">
+            </div>
+
+            <div class="field">
+                <label>Accent Color</label>
+                <input type="color" id="inputColor" value="#6366f1">
+            </div>
+        </section>
+
+        <section class="preview-pane">
+            <div id="businessCard" class="card">
+                <div class="card-content">
+                    <h3 id="previewName">Your Name</h3>
+                    <p id="previewRole">Job Title</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
