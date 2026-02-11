@@ -12,11 +12,28 @@
     // O método .test() retorna true se encontrar números ou símbolos
     const possuiErro = regexProibidos.test(input);
 
-    // 3. Preparar a Sugestão (Tratamento)
+    // 3. Preparar a Sugestão (Tratamento/Sanitização)
+    //======================================================================================
     let sugestao = input.replace(/[^a-zA-Z\u00C0-\u00FF\s]/g, '') // Remove o lixo
                         .replace(/\s+/g, ' ')                      // Corrige espaços duplos
                         .trim()                                    // Limpa pontas
                         .toUpperCase();                            // Põe em Maiúsculo
+
+
+
+// [ ] (Colchetes): Define um conjunto de caracteres permitidos ou proibidos.
+
+// ^ (Circunflexo): Dentro dos colchetes, ele funciona como uma negação. Ou seja: "procure por tudo o que NÃO seja o que está nesta lista".
+
+// a-z e A-Z: Letras minúsculas e maiúsculas do alfabeto básico (sem acentos).
+
+// \u00C0-\u00FF: Este é um intervalo de caracteres Unicode. Ele cobre a maioria dos caracteres acentuados e especiais do latim (como á, é, í, ó, ú, ç, ñ, etc.). Sem isso, nomes como "João" virariam "Jo".
+
+// \s: Representa espaços em branco (espaço, tabulação, quebra de linha).
+
+// /g (Flag Global): Indica que a busca deve continuar por todo o texto, e não parar na primeira ocorrência que encontrar.
+
+
 
     // 4. Fluxo de Decisão
     if (possuiErro) {

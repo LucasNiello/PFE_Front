@@ -16,7 +16,7 @@
     // Validação Profissional: Verifica se a data digitada é válida
     // O comando isNaN verifica se o resultado "Não é um Número" (Not a Number)
     if (isNaN(dataEvento.getTime())) {
-        alert("❌ Erro: Data inválida! Use o formato AAAA-MM-DD (Ex: 2025-01-30).");
+        alert("❌ Erro: Data inválida! Use o formato AAAA-MM-DD (Ex: 2025-01-30)."); // E se precisar mudar a formatação para o usuario, ex. formatação brasileira (DD/MM/AAAA)?
         return;
     }
 
@@ -32,7 +32,7 @@
 
     // Convertendo ms para dias e arredondando para cima
     // Math.ceil garante que se faltarem 1.1 dias, ele diga "2 dias" (pois o dia 1 já acabou)
-    let diasRestantes = Math.ceil(diferencaEmMs / MS_POR_DIA);
+    let diasRestantes = Math.ceil(diferencaEmMs / MS_POR_DIA); // o ceil é extremamente importante para AGENDAS digitais ou contadores como este.
 
     // 5. Exibição Inteligente
     if (diasRestantes < 0) {

@@ -13,8 +13,8 @@
     let prioridade = parseInt(prioInput);
 
     // Validação
-    if (isNaN(hora) || hora < 0 || hora > 23) {
-        alert("❌ Erro: Horário Inválido! Digite entre 0 e 23.");
+    if (isNaN(hora) || hora < 0 || hora > 23) { // Esse sinal || é chamado de Operador OR (ou "OU" lógico). Ele é um dos pilares da lógica de programação e serve para verificar condições múltiplas em uma única expressão.
+        alert("❌ Erro: Horário Inválido! Digite entre 0 e 23."); 
         return;
     }
     if (isNaN(prioridade) || prioridade < 1 || prioridade > 10) {

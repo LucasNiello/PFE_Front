@@ -11,7 +11,7 @@
     for (let hora of agendaHorarios) {
         
         // 3. Lógica de Decisão (Filtro)
-        if (hora >= 0 && hora <= 23) {
+        if (hora >= 0 && hora < 24) { // assim fica melhor que <= 23
             // Horário Válido
             relatorioFinal += `✅ [${hora}h]: Compromisso Agendado.\n`;
             contagemValidos++; // Soma +1 na contagem (Desafio Extra)
