@@ -1,0 +1,40 @@
+.nome1 {
+    height: 620px;
+    width: 750px;
+    background-color: aquamarine;    
+    /* Substitui o display flex*/
+    display: grid;
+    place-content: center; 
+}
+/* 1. AGRUPAMENTO: Colocamos aqui tudo o que as 3 faixas têm de igual */
+.nome2, .nome3, .nome4 {
+    height: 190px;
+    width: 700px;
+    border: solid black 2px;    
+    /* Transformamos cada faixa num Grid */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+
+    place-items: center; 
+}
+/* 2. BORDAS e CORES especificas*/
+.nome2 {
+    background-color: burlywood;
+    border-bottom: 1px solid black;
+}
+.nome3 {
+    background-color: chartreuse;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+}
+.nome4 {
+    background-color: cadetblue;
+    border-top: 1px solid black;
+}
+/* A caixinha menor */
+.nome5 {
+    height: 50px;
+    width: 80px;
+    background-color: coral;
+    border: solid black 2px;
+}
