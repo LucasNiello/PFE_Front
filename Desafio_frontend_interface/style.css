@@ -1,0 +1,524 @@
+/* =======================================
+   Reset Básico e Fundo da Página
+======================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-color: #000000;
+    /* Dark Mode profundo */
+    color: #ffffff;
+    /* Texto branco */
+    display: flex;
+}
+
+
+/* =======================================
+   Barra Lateral (Sidebar)
+======================================= */
+.sidebar {
+    width: 72px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    border-right: 1px solid #262626;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    background-color: #000;
+    z-index: 100;
+}
+
+.sidebar a,
+.sidebar-logo {
+    color: #f5f5f5;
+    text-decoration: none;
+    font-size: 24px;
+    margin: 15px 0;
+    transition: transform 0.2s;
+}
+
+.sidebar a:hover {
+    transform: scale(1.1);
+}
+
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-top: 30px;
+}
+
+.profile-icon-small {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #ccc;
+    background-image: url('https://i.pravatar.cc/150?img=33');
+    background-size: cover;
+}
+
+
+/* =======================================
+   Layout Principal e Estrutura do Feed
+======================================= */
+.main-content {
+    margin-left: 72px;
+    width: calc(100% - 72px);
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.feed-wrapper {
+    width: 100%;
+    max-width: 630px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* =======================================
+   Carrossel de Stories
+======================================= */
+.stories-container {
+    width: 100%;
+    position: relative;
+    /* Importante para os botões ficarem absolutos a ele */
+    margin-bottom: 30px;
+}
+
+.stories {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 0;
+}
+
+.stories::-webkit-scrollbar {
+    display: none;
+}
+
+.story {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    min-width: 70px;
+    /* Garante que os itens não amassem */
+}
+
+.story-ring {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.story-ring img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #000;
+    /* Borda preta pra dar o efeito de recorte */
+    object-fit: cover;
+}
+
+.story p {
+    font-size: 12px;
+    color: #a8a8a8;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 60px;
+    text-align: center;
+}
+
+/* Botões de navegação dos stories */
+.scroll-btn {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.scroll-btn.left {
+    left: -10px;
+}
+
+.scroll-btn.right {
+    right: -10px;
+}
+
+
+/* =======================================
+   Publicações (Posts do Feed)
+======================================= */
+.post {
+    width: 100%;
+    max-width: 470px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #262626;
+    /* Linha sutil embaixo */
+    padding-bottom: 15px;
+}
+
+/* Cabeçalho do Post (Foto de perfil, nome e menu) */
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    /* Sem padding lateral para alinhar com a borda da foto */
+}
+
+.post-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.post-profile-pic {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #262626;
+    /* Borda sutil em volta da foto de perfil */
+}
+
+.username {
+    font-weight: 600;
+    font-size: 14px;
+    color: #f5f5f5;
+    /* Texto branco */
+}
+
+.post-header .fa-ellipsis {
+    color: #f5f5f5;
+    cursor: pointer;
+}
+
+/* Mídia do Post (Imagem ou Vídeo) */
+.post-media {
+    width: 100%;
+    max-height: 585px;
+    object-fit: cover;
+    border-radius: 4px;
+    /* Na versão web, o Instagram tem os cantos levemente arredondados */
+    border: 1px solid #262626;
+    /* Contorno sutil da foto/vídeo */
+    display: block;
+}
+
+/* Rodapé do Post (Botões, curtidas e legenda) */
+.post-footer {
+    padding: 12px 0;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    margin-bottom: 12px;
+    color: #f5f5f5;
+    /* Ícones brancos */
+}
+
+.post-actions div {
+    display: flex;
+    gap: 16px;
+}
+
+.post-actions i {
+    cursor: pointer;
+    transition: color 0.2s, transform 0.1s;
+}
+
+.post-actions i:hover {
+    color: #8e8e8e;
+    /* Fica cinza ao passar o mouse */
+}
+
+.post-actions i:active {
+    transform: scale(0.9);
+    /* Dá um pulinho quando clica */
+}
+
+/* Classe dinâmica que o JavaScript adiciona para o coração vermelho */
+.liked {
+    color: #ff3040 !important;
+}
+
+.likes {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #f5f5f5;
+}
+
+.caption {
+    font-size: 14px;
+    color: #f5f5f5;
+}
+
+
+/* =======================================
+   Janela Modal de Comentários
+======================================= */
+.comment-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    /* Fundo escuro transparente */
+    display: none;
+    /* Escondido por padrão, o JS vai mostrar */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.comment-modal-content {
+    background-color: #262626;
+    /* Cor dos menus do Insta no Dark Mode */
+    width: 90%;
+    max-width: 400px;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.comment-modal-content h3 {
+    color: #f5f5f5;
+    font-size: 16px;
+    text-align: center;
+}
+
+#commentInput {
+    width: 100%;
+    height: 80px;
+    background-color: #000;
+    border: 1px solid #363636;
+    color: #f5f5f5;
+    border-radius: 8px;
+    padding: 10px;
+    resize: none;
+    /* Impede o usuário de redimensionar a caixa */
+    font-family: inherit;
+}
+
+#commentInput:focus {
+    outline: none;
+    border-color: #555;
+}
+
+.comment-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.comment-modal-actions button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.comment-modal-actions button:hover {
+    opacity: 0.8;
+}
+
+#cancelComment {
+    background-color: transparent;
+    color: #f5f5f5;
+}
+
+#submitComment {
+    background-color: #0095f6;
+    /* Azul característico dos botões do Instagram */
+    color: #fff;
+}
+
+/* =======================================
+   Stories (Full Screen)
+======================================= */
+.story-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;
+    display: none;
+    /* Oculto por padrão */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.story-modal-container {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    /* Largura típica de celular */
+    height: 100vh;
+    max-height: 900px;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Container da linha do tempo */
+.story-progress-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    overflow: hidden;
+    z-index: 10;
+}
+
+/* A barrinha branca que vai encher */
+.story-progress-bar {
+    height: 100%;
+    width: 0%;
+    /* Inicia vazia */
+    background-color: #fff;
+}
+
+/* Classe que ativa a animação de 5 segundos */
+.story-progress-bar.active {
+    animation: storyProgressAnim 5s linear forwards;
+}
+
+@keyframes storyProgressAnim {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+/* Cabeçalho do Story */
+.story-modal-header {
+    position: absolute;
+    top: 25px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.story-modal-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.story-modal-user img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+}
+
+.story-modal-user span {
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+#closeStoryBtn {
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.8));
+}
+
+/* Imagem principal */
+#storyModalImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* =======================================
+   Popup de Notificação (Toast)
+======================================= */
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #262626;
+    /* Cor escura padrão do Insta */
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 3000;
+
+    /* Escondido por padrão */
+    opacity: 0;
+    visibility: hidden;
+
+    /* Transição suave de aparecimento */
+    transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Classe que o JavaScript vai adicionar para mostrar o aviso */
+.toast-notification.show {
+    opacity: 1;
+    visibility: visible;
+    bottom: 40px;
+    /* Sobe um pouquinho para dar um efeito legal */
+}
+
+/* Aproveitando para garantir que os ícones tenham o "dedinho" de clique */
+.post-actions i {
+    cursor: pointer;
+}

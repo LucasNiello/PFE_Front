@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <nav class="sidebar">
+        <div class="sidebar-logo">
+            <i class="fa-brands fa-instagram"></i>
+        </div>
+        <div class="sidebar-links">
+            <a href="#"><i class="fa-solid fa-house"></i></a>
+            <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="#"><i class="fa-regular fa-compass"></i></a>
+            <a href="#"><i class="fa-solid fa-clapperboard"></i></a>
+            <a href="#"><i class="fa-regular fa-paper-plane"></i></a>
+            <a href="#"><i class="fa-regular fa-heart"></i></a>
+            <a href="#"><i class="fa-regular fa-square-plus"></i></a>
+            <a href="#">
+                <div class="profile-icon-small"></div>
+            </a>
+        </div>
+        <div class="sidebar-more">
+            <a href="#"><i class="fa-solid fa-bars"></i></a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="feed-wrapper">
+
+            <section class="stories-container">
+                <div class="stories" id="storiesWrapper">
+                    <div class="story">
+                        <div class="story-ring"><img src="https://i.pravatar.cc/150?img=1" alt="User"></div>
+                        <p>lohcaballero</p>
+                    </div>
+                    <div class="story">
+                        <div class="story-ring"><img src="https://i.pravatar.cc/150?img=2" alt="User"></div>
+                        <p>llidong_if...</p>
+                    </div>
+                    <div class="story">
+                        <div class="story-ring"><img src="https://i.pravatar.cc/150?img=3" alt="User"></div>
+                        <p>larissabec...</p>
+                    </div>
+                    <div class="story">
+                        <div class="story-ring"><img src="https://i.pravatar.cc/150?img=4" alt="User"></div>
+                        <p>rafamiran...</p>
+                    </div>
+                    <div class="story">
+                        <div class="story-ring"><img src="https://i.pravatar.cc/150?img=5" alt="User"></div>
+                        <p>nicolesacc...</p>
+                    </div>
+                    <div class="story">
+                        <div class="story-ring"><img src="https://i.pravatar.cc/150?img=6" alt="User"></div>
+                        <p>naofode.c...</p>
+                    </div>
+                    <div class="story">
+                        <div class="story-ring"><img src="https://i.pravatar.cc/150?img=7" alt="User"></div>
+                        <p>essediafoi...</p>
+                    </div>
+                    <div class="story">
+                        <div class="story-ring"><img src="https://i.pravatar.cc/150?img=8" alt="User"></div>
+                        <p>big.risos</p>
+                    </div>
+                    <div class="story">
+                        <div class="story-ring"><img src="https://i.pravatar.cc/150?img=9" alt="User"></div>
+                        <p>artesexplic...</p>
+                    </div>
+                </div>
+                <button class="scroll-btn left" id="scrollLeft"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="scroll-btn right" id="scrollRight"><i class="fa-solid fa-chevron-right"></i></button>
+            </section>
+
+            <div class="feed">
+                <article class="post">
+                    <header class="post-header">
+                        <div class="post-user">
+                            <img src="https://i.pravatar.cc/150?img=10" alt="Profile" class="post-profile-pic">
+                            <span class="username">fotografia_pro</span>
+                        </div>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </header>
+                    <img src="https://picsum.photos/id/1018/600/600" alt="Postagem de natureza" class="post-media">
+                    <div class="post-footer">
+                        <div class="post-actions">
+                            <div>
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-regular fa-comment"></i>
+                                <i class="fa-regular fa-paper-plane"></i>
+                            </div>
+                            <i class="fa-regular fa-bookmark"></i>
+                        </div>
+                        <p class="likes">1.024 gostos</p>
+                        <p class="caption"><span class="username">fotografia_pro</span> A beleza da natureza em um
+                            clique. 🌲⛰️</p>
+                    </div>
+                </article>
+
+                <article class="post">
+                    <header class="post-header">
+                        <div class="post-user">
+                            <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="post-profile-pic">
+                            <span class="username">tech_daily</span>
+                        </div>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </header>
+                    <video class="post-media" loop muted autoplay>
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                        Seu navegador não suporta vídeos.
+                    </video>
+                    <div class="post-footer">
+                        <div class="post-actions">
+                            <div>
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-regular fa-comment"></i>
+                                <i class="fa-regular fa-paper-plane"></i>
+                            </div>
+                            <i class="fa-regular fa-bookmark"></i>
+                        </div>
+                        <p class="likes">856 gostos</p>
+                        <p class="caption"><span class="username">tech_daily</span> Um clássico da animação
+                            open-source rolando no feed! 🐰🎬</p>
+                    </div>
+                </article>
+
+                <article class="post">
+                    <header class="post-header">
+                        <div class="post-user">
+                            <img src="https://i.pravatar.cc/150?img=15" alt="Profile" class="post-profile-pic">
+                            <span class="username">cafe_lovers</span>
+                        </div>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </header>
+                    <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=600" alt="Café"
+                        class="post-media">
+                    <div class="post-footer">
+                        <div class="post-actions">
+                            <div>
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-regular fa-comment"></i>
+                                <i class="fa-regular fa-paper-plane"></i>
+                            </div>
+                            <i class="fa-regular fa-bookmark"></i>
+                        </div>
+                        <p class="likes">542 gostos</p>
+                        <p class="caption"><span class="username">cafe_lovers</span> A melhor hora do dia. ☕✨</p>
+                    </div>
+                </article>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="comment-modal-overlay" id="commentModal">
+        <div class="comment-modal-content">
+            <h3>Adicionar comentário</h3>
+            <textarea id="commentInput" placeholder="Escreva seu comentário aqui..."></textarea>
+            <div class="comment-modal-actions">
+                <button id="cancelComment">Cancelar</button>
+                <button id="submitComment">Publicar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="story-modal-overlay" id="storyModal">
+        <div class="story-modal-container">
+            <div class="story-progress-container">
+                <div class="story-progress-bar" id="storyProgressBar"></div>
+            </div>
+
+            <div class="story-modal-header">
+                <div class="story-modal-user">
+                    <img src="" id="storyModalPic" alt="User">
+                    <span id="storyModalName">username</span>
+                </div>
+                <i class="fa-solid fa-xmark" id="closeStoryBtn"></i>
+            </div>
+
+            <img src="" id="storyModalImage" alt="Conteúdo do Story">
+        </div>
+    </div>
+    <div id="toastNotification" class="toast-notification">
+        Enviado com sucesso!
+    </div>
+    <!-- |||||  Notificação de encaminhamento  ||||| -->
+
+    <div id="toastNotification" class="toast-notification">
+        Enviado com sucesso!
+    </div>
+
+    <!-- |||||  SCRIPT  ||||| -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
