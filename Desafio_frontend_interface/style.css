@@ -522,3 +522,26 @@ body {
 .post-actions i {
     cursor: pointer;
 }
+/* =======================================
+   Animação do Coração de  curtida (Double-Tap)
+======================================= */
+.big-heart-anim {
+    position: fixed; /* Fica por cima de tudo na tela */
+    color: #fff;
+    font-size: 80px; /* Tamanho do coração gigante */
+    pointer-events: none; /* Para não atrapalhar outros cliques */
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 9999;
+    filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.5)); /* Sombra para aparecer em fotos claras */
+    
+    /* Chama a animação de pulsar */
+    animation: heartBurst 0.8s ease-out forwards;
+}
+
+@keyframes heartBurst {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    15% { transform: translate(-50%, -50%) scale(1.2); } /* Pulo grande */
+    30% { transform: translate(-50%, -50%) scale(1); }   /* Volta ao normal */
+    70% { transform: translate(-50%, -50%) scale(1); opacity: 1; } /* Pausa rápida */
+    100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; } /* Cresce e desaparece */
+}

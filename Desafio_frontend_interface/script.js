@@ -201,5 +201,40 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 3000);
         });
     });
+// =======================================
+    // Double-Tap para Curtir (Dois cliques na foto)
+    // =======================================
+    const postImages = document.querySelectorAll('.post-media');
 
+    postImages.forEach(media => {
+        // 'dblclick' é o evento que deteta o duplo clique rápido
+        media.addEventListener('dblclick', function(e) {
+            
+            // 1. Cria o coração gigante dinamicamente
+            const bigHeart = document.createElement('i');
+            bigHeart.classList.add('fa-solid', 'fa-heart', 'big-heart-anim');
+            
+            // 2. Posiciona o coração exatamente onde o utilizador clicou com o rato
+            bigHeart.style.left = `${e.clientX}px`;
+            bigHeart.style.top = `${e.clientY}px`;
+            
+            // 3. Coloca o coração na tela
+            document.body.appendChild(bigHeart);
+            
+            // 4. Procura o botão de curtir normal (pequeno) daquela publicação específica
+            const postAtual = this.closest('.post');
+            const btnCurtir = postAtual.querySelector('.post-actions .fa-heart');
+            
+            // Se ainda não estiver curtido, altera o ícone para o coração vermelho
+            if (btnCurtir && !btnCurtir.classList.contains('liked')) {
+                btnCurtir.classList.remove('fa-regular');
+                btnCurtir.classList.add('fa-solid', 'liked');
+            }
+
+            // 5. Remove o coração gigante da memória depois da animação terminar (800ms)
+            setTimeout(() => {
+                bigHeart.remove();
+            }, 800);
+        });
+    });
 });
