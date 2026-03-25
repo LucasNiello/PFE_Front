@@ -238,3 +238,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+// =======================================
+// Análises:
+// ======================================= 
+// | Funcionalidade | Técnica Utilizada                 | Observação                                                                                       |
+// | -------------- | --------------------------------- | ------------------------------------------------------------------------------------------------ |
+// | Carrossel      | scrollBy com behavior: 'smooth'   | Proporciona uma transição fluida sem necessidade de bibliotecas externas.                        |
+// | Stories        | setTimeout recursivo              | A função abrirStory(index + 1) cria um loop de continuidade muito natural.                       |
+// | Double-Tap     | dblclick + Coordenadas            | O uso de e.clientX e e.clientY para posicionar o coração onde o mouse clicou é um toque moderno. |
+// | Modais         | Manipulação de display: flex/none | Simples e eficaz para sobreposições.                                                             |
