@@ -1,0 +1,64 @@
+/* --- Novas Estilizações para os Requisitos Adicionais --- */
+
+/* Barra de Busca */
+.search-section {
+  margin: 15px 0;
+}
+.search-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Modo de Edição no Card */
+.edit-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.edit-mode input {
+  padding: 8px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  font-family: inherit;
+}
+.edit-actions {
+  display: flex;
+  gap: 5px;
+}
+.save-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cancel-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Botão Editar padrão */
+.task-actions .edit-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.empty-state {
+  text-align: center;
+  grid-column: 1 / -1;
+  color: #666;
+  margin-top: 20px;
+}

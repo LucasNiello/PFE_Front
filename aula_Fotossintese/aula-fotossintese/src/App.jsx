@@ -32,7 +32,7 @@ const App = () => {
         <p>{aulas[etapa].desc}</p>
         
         {/* Aqui adicionamos justifyContent: 'center' para centralizar os botões */}
-        <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}> {/* Add JustifyContent para centralizar os botçoes*/}
           <button style={styles.button} onClick={() => setEtapa(0)}>1. Luz</button>
           <button style={styles.button} onClick={() => setEtapa(1)}>2. Absorção</button>
           <button style={styles.button} onClick={() => setEtapa(2)}>3. Resultado</button>
