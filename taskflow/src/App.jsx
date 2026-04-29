@@ -1,5 +1,5 @@
 // -------------------- FORMATIVA  REACT --------------------
-// Lucas Terminiello - 3DEVT
+//                Lucas Terminiello - 3DEVT
 
 
 // ===================================================================================================
@@ -16,16 +16,23 @@ function App() {
 
 // ===================================================================================================
 
-  // Estados originais ( A mmória da aplicação)
+  // Estados originais ( A memória da aplicação)
   const [taskText, setTaskText] = useState("");
   const [priority, setPriority] = useState("Baixa");
-  const [taskList, setTaskList] = useState([]);
+
+  // CORREÇÃO AQUI: Em vez de começar com [], ele já tenta ler o localStorage na hora que nasce.
+  const [taskList, setTaskList] = useState(() => {
+    const saved = localStorage.getItem("@taskflow_data");
+    return saved ? JSON.parse(saved) : [];
+  });
+
   const [filter, setFilter] = useState("Todas");
 
   // Novos estados para os requisitos adicionais
   const [searchTerm, setSearchTerm] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [editTaskText, setEditTaskText] = useState("");
+  const [editPriority, setEditPriority] = useState("Baixa");
 
 //   O useState sempre devolve duas coisas: o valor atual (ex: taskText) e uma função para alterar esse valor (ex: setTaskText).
 
@@ -43,16 +50,9 @@ function App() {
 
 // editTaskText: Guarda o texto temporário enquanto o usuário edita uma tarefa.
 
-//================================================================================================
+// =================================================================================================
 
-  useEffect(() => {
-    const saved = localStorage.getItem("@taskflow_data");
-    if (saved) setTaskList(JSON.parse(saved));
-  }, []);
-  
-//   Esse useEffect com o array vazio [] no final significa: "Rode isso apenas uma vez, quando a página abrir".
-
-// Ele vai no "disco rígido" do navegador (localStorage), procura por algo salvo com o nome @taskflow_data e, se achar, transforma de texto para objeto JavaScript (JSON.parse) e joga na nossa taskList.
+  // Removido o useEffect de carregamento porque agora o carregamento é feito direto no useState acima.
 
 // =================================================================================================
 
@@ -119,6 +119,7 @@ function App() {
   const startEditing = (task) => {
     setEditingId(task.id);
     setEditTaskText(task.text);
+    setEditPriority(task.priority); 
   };
 
   // Quando clica em "Editar", o sistema grava o ID daquela tarefa e copia o texto dela para o input de edição.
@@ -128,7 +129,7 @@ function App() {
   const saveEdit = (id) => {
     if (!editTaskText.trim()) return;
     setTaskList(taskList.map(t => 
-      t.id === id ? { ...t, text: editTaskText } : t
+      t.id === id ? { ...t, text: editTaskText, priority: editPriority } : t
     ));
     setEditingId(null);
   };
@@ -173,8 +174,6 @@ function App() {
 
 // =================================================================================================
 
-// A partir do return, estamos escrevendo HTML (JSX), mas com a possibilidade de injetar JavaScript no meio usando chaves { }.
-
   return (
     <div className="app-container">
       <header>
@@ -198,7 +197,6 @@ function App() {
         </form>
       </section>
 
-      {/* Novo: Barra de Busca (Requisito 2) */}
       <section className="search-section">
         <input 
           type="text" 
@@ -226,7 +224,6 @@ function App() {
           <div key={item.id} className={`task-card ${item.priority.toLowerCase()} ${item.completed ? 'done' : ''}`}>
             
             <div className="task-content">
-              {/* Lógica condicional para o Requisito 3 (Edição) */}
               {editingId === item.id ? (
                 <div className="edit-mode">
                   <input 
@@ -235,6 +232,17 @@ function App() {
                     onChange={(e) => setEditTaskText(e.target.value)}
                     autoFocus
                   />
+                  
+                  <select 
+                    value={editPriority} 
+                    onChange={(e) => setEditPriority(e.target.value)}
+                    className="edit-select"
+                  >
+                    <option value="Baixa">Baixa</option>
+                    <option value="Média">Média</option>
+                    <option value="Alta">Alta</option>
+                  </select>
+
                   <div className="edit-actions">
                     <button onClick={() => saveEdit(item.id)} className="save-btn">Salvar</button>
                     <button onClick={cancelEdit} className="cancel-btn">Cancelar</button>
