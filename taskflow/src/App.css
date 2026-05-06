@@ -88,7 +88,7 @@
   margin-bottom: 15px;
   border-radius: 4px; /* Bordas mais retas combinam mais com terminal */
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background-color: rgba(10, 10, 12, 0.9); /* Fundo base bem escuro */
+  background-color: rgba(10, 10, 12, 0.9); Fundo base bem escuro
   
   /* Borda esquerda que vai piscar */
   border-left: 6px solid #003b11; 
