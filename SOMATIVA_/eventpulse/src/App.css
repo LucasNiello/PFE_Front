@@ -1,0 +1,285 @@
+/* ==========================================================================
+   VARIÁVEIS GLOBAIS DE CORES
+   Define o padrão de cores usado em todo o projeto para facilitar alterações.
+   ========================================================================== */
+:root {
+  --palestra: #0284c7;      /* Azul usado na borda dos cards de Palestra */
+  --workshop: #f59e0b;      /* Amarelo/Laranja usado nos cards de Workshop */
+  --painel: #10b981;        /* Verde usado nos cards de Painel */
+  --bg-encerrado: #e5e7eb;  /* Fundo cinza para eventos encerrados */
+}
+
+/* ==========================================================================
+   ESTILOS BASE DA PÁGINA
+   ========================================================================== */
+/* REQUISITO 5.1: Fundo da aplicação em gradiente (indelével e marcante) */
+body {
+  background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%); /* Fundo degradê suave */
+  min-height: 100vh; /* Ocupa 100% da altura da tela */
+  margin: 0;         /* Remove margens padrão do navegador */
+}
+
+/* Container principal que "abraça" todo o conteúdo do App.jsx */
+.app-container {
+  max-width: 900px;  /* Largura máxima para não esticar em monitores grandes */
+  margin: 2rem auto; /* Centraliza a tela horizontalmente e dá espaço no topo */
+  padding: 0 1rem;   /* Espaçamento interno nas laterais */
+  font-family: system-ui, -apple-system, sans-serif; /* Fonte moderna e limpa */
+  color: #1f2937;    /* Cor padrão do texto (cinza escuro) */
+}
+
+/* ==========================================================================
+   CABEÇALHO (HEADER)
+   Abriga o título do sistema e o botão de limpar cronograma.
+   ========================================================================== */
+header {
+  display: flex;
+  justify-content: space-between; /* Empurra o título para esquerda e o botão para direita */
+  align-items: center;            /* Alinha verticalmente ao centro */
+  margin-bottom: 2.5rem;          /* Espaço abaixo do cabeçalho */
+  background: rgba(255, 255, 255, 0.7); /* Fundo branco levemente transparente */
+  padding: 20px;
+  border-radius: 12px;            /* Bordas arredondadas */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); /* Sombra sutil sob o cabeçalho */
+}
+
+/* REQUISITO 5.2: Título principal ("EventPulse") com texto em gradiente */
+header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  /* Cria o gradiente roxo/rosa */
+  background: -webkit-linear-gradient(45deg, #4f46e5, #ec4899);
+  -webkit-background-clip: text;        /* Faz o fundo preencher apenas a letra */
+  -webkit-text-fill-color: transparent; /* Deixa a cor original da letra invisível */
+  font-weight: 800;
+}
+
+/* Subtítulo ("Gestão de Eventos Acadêmicos") */
+header p { 
+  margin: 5px 0 0 0; 
+  color: #4b5563; 
+}
+
+/* Botão de "Limpar Cronograma" no cabeçalho */
+.btn-limpar {
+  background: #ef4444; /* Vermelho para indicar atenção/perigo */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s; /* Efeito suave ao passar o mouse */
+}
+.btn-limpar:hover { background: #dc2626; } /* Vermelho mais escuro no hover */
+
+/* ==========================================================================
+   ÁREA DO FORMULÁRIO (CADASTRAR EVENTO)
+   ========================================================================== */
+.form-section form {
+  display: flex;       /* Coloca os inputs e botão lado a lado */
+  gap: 12px;           /* Espaço entre os elementos do form */
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+/* Campos de entrada (Nome do Evento) */
+.form-section input { flex: 3; padding: 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem; }
+
+/* Menus de seleção (Tipo de Evento e Quantidade de Vagas) */
+.form-section select { flex: 1; padding: 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem; background: white; }
+
+/* Botão de "Agendar" evento */
+.form-section button { padding: 12px 24px; background: #4f46e5; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+
+/* Ajuste de tamanho específico para o select de vagas (deixando-o um pouco menor) */
+.vagas-select { flex: 0.8 !important; }
+
+/* ==========================================================================
+   ÁREA DE PESQUISA (BARRA DE BUSCA)
+   ========================================================================== */
+.search-section { margin-top: 20px; }
+.search-input { 
+  width: 100%; 
+  box-sizing: border-box; 
+  padding: 14px; 
+  border-radius: 8px; 
+  border: 1px solid #d1d5db; 
+  font-size: 1rem; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+}
+
+/* ==========================================================================
+   BOTÕES DE FILTRO (TODOS, AGENDADOS, EM ANDAMENTO, ENCERRADOS)
+   ========================================================================== */
+.filter-section { display: flex; justify-content: center; gap: 8px; margin: 24px 0; }
+
+/* Botão de filtro padrão */
+.filter-section button { 
+  padding: 8px 16px; background: white; border: 1px solid #e5e7eb; border-radius: 20px; 
+  cursor: pointer; transition: all 0.2s; font-weight: 500; 
+}
+/* Estilo quando o filtro está "Ativo" (clicado) */
+.filter-section button.active { background: #111827; color: white; border-color: #111827; }
+
+/* ==========================================================================
+   GRID DE EVENTOS (Onde os cards aparecem)
+   ========================================================================== */
+.event-grid { 
+  display: grid; 
+  /* Cria colunas responsivas: os cards tem no mínimo 280px e se ajustam a tela */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+  gap: 20px; 
+}
+
+/* ==========================================================================
+   CARD DE EVENTO (O QUADRADO COM AS INFORMAÇÕES DO EVENTO)
+   ========================================================================== */
+/* REQUISITO 5.3: Efeito Hover Indelével nos Cards */
+.event-card {
+  padding: 18px;
+  border-radius: 12px;
+  border-top: 6px solid #ccc; /* Linha no topo que muda de cor dependendo do tipo */
+  background: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Sombra base */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Empurra os botões para o fundo do card */
+  min-height: 220px;
+  /* Transição para o efeito do mouse */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+/* Efeito quando o mouse passa por cima do card (Elevação e Sombra maior) */
+.event-card:hover {
+  transform: translateY(-8px); /* Move 8px para cima */
+  box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.15); /* Aumenta a sombra */
+}
+
+/* Define a cor da linha superior do card baseada no TIPO de evento */
+.event-card.palestra { border-top-color: var(--palestra); }
+.event-card.workshop { border-top-color: var(--workshop); }
+.event-card.painel { border-top-color: var(--painel); }
+
+/* Animação que faz o card piscar/pulsar se estiver "Em Andamento" */
+.event-card.em-andamento { animation: pulse border 2s infinite alternate; background: #fbfbfe; }
+
+/* Aparência "desativada" se o evento estiver "Encerrado" */
+.event-card.encerrado { opacity: 0.65; background: var(--bg-encerrado); box-shadow: none; pointer-events: none; }
+
+/* CONTEÚDO DO CARD (Textos Internos) */
+.event-content h3 { margin: 0 0 12px 0; font-size: 1.2rem; }
+.event-tag, .status-badge, .vagas-badge { display: block; font-size: 0.85rem; margin-bottom: 4px; }
+.event-tag { font-weight: 500; color: #4b5563; }
+.status-badge { font-weight: bold; color: #1f2937; }
+
+/* Badge verde indicando as vagas restantes */
+.vagas-badge { font-weight: bold; color: #047857; background: #d1fae5; display: inline-block; padding: 2px 8px; border-radius: 12px; margin-top: 4px; }
+small { color: #9ca3af; display: block; margin-top: 8px; } /* Data de registro */
+
+/* BOTÕES DENTRO DO CARD (Iniciar, Encerrar, Remover) */
+.event-actions { margin-top: 18px; display: flex; justify-content: space-between; gap: 8px; }
+.event-actions button { flex: 1; padding: 8px; font-size: 0.9rem; border: 1px solid #d1d5db; border-radius: 6px; cursor: pointer; }
+.event-actions button.status-btn { background: #f9fafb; font-weight: 500; }
+.event-actions button.delete { background: white; color: #ef4444; border-color: #ef4444; }
+
+/* BOTÃO DE INSCREVER ALUNO */
+.inscrever-btn {
+  margin-top: 12px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #10b981; /* Fundo Verde */
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.inscrever-btn:hover:not(:disabled) { background: #059669; } /* Verde escuro no hover se não estiver desabilitado */
+
+/* Estado quando as vagas acabam (Botão "Esgotado") */
+.inscrever-btn.esgotado { background: #d1d5db; color: #6b7280; cursor: not-allowed; }
+
+/* ==========================================================================
+   REQUISITO 5: BOTÃO FLUTUANTE (ÍCONE NO CANTO) E JANELA DO MODAL
+   ========================================================================== */
+
+/* Botão fixo no canto inferior direito que aciona o modal */
+.floating-btn {
+  position: fixed;   /* Fixa na tela, independente da rolagem */
+  bottom: 24px;      /* Distância do fundo */
+  right: 24px;       /* Distância da direita */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* Forma de círculo perfeito */
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Sombra para destacar do fundo */
+  z-index: 1000;     /* Fica na frente de outros elementos */
+  transition: transform 0.2s;
+  /* Configurações ajustadas para acomodar a imagem favicon_css.png */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; 
+  background: white; 
+  border: 2px solid #111827;
+}
+.floating-btn:hover { transform: scale(1.1); } /* Aumenta 10% ao passar o mouse */
+
+/* Ajuste de tamanho e alinhamento da imagem favicon_css.png dentro do botão */
+.floating-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain; /* Impede que a imagem distorça */
+}
+
+/* Fundo escuro transparente (Overlay) que bloqueia o fundo quando o modal abre */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px); /* Embaça o que estiver atrás do modal */
+  display: flex;
+  justify-content: center; /* Centraliza a caixa branca na tela */
+  align-items: center;
+  z-index: 1001; /* Fica acima do botão flutuante */
+}
+
+/* Caixa de conteúdo branca do Modal */
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+  animation: slideUp 0.3s ease-out forwards; /* Chama a animação abaixo ao abrir */
+}
+
+/* Animação que faz o modal "deslizar para cima" quando aparece na tela */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Textos e Botão interno do Modal */
+.modal-content h2 { margin-top: 0; color: #111827; }
+.modal-content ul { padding-left: 20px; line-height: 1.6; color: #4b5563; }
+.modal-content li { margin-bottom: 12px; }
+
+/* Botão de Fechar o modal */
+.close-modal {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
