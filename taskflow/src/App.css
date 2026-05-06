@@ -51,7 +51,7 @@
   background: #007bff;
   color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 5px px;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -64,69 +64,58 @@
 }
 
 /* ==========================================================================
-   VISUAL CYBERPUNK V2 - BORDA PULSANTE E FUNDO TRANSLÚCIDO
+   VISUAL CYBERPUNK V3 - BORDA PULSANTE SINCRONIZADA
    ========================================================================== */
 
-/* 1. Animação apenas para a cor da borda esquerda */
-@keyframes piscarBordaNeon {
-  0%, 49.9% { 
-    border-left-color: #00ff41; /* Verde Neon "True" */
-    box-shadow: -5px 0 15px rgba(0, 255, 65, 0.4); /* Brilho apenas na esquerda */
-  } 
-  50%, 100% { 
-    border-left-color: #003b11; /* Verde escuro "False" */
-    box-shadow: none;
-  }
-}
-
-/* 2. Base do Card */
+/* 1. Base do Card (Estado Apagado) */
 .task-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px;
   margin-bottom: 15px;
-  border-radius: 4px; /* Bordas mais retas combinam mais com terminal */
+  border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background-color: rgba(10, 10, 12, 0.9); Fundo base bem escuro
+  background-color: rgba(10, 10, 12, 0.9);
   
-  /* Borda esquerda que vai piscar */
+  /* Borda esquerda que vai piscar (começa escura) */
   border-left: 6px solid #003b11; 
   
-  /* Ativa a animação na borda */
-  animation: piscarBordaNeon 1s infinite;
-  transition: background-color 0.3s ease;
+  /* Transição suave para o fundo e para a borda */
+  transition: background-color 0.3s ease, border-color 0.1s, box-shadow 0.1s;
+}
+
+/* 2. Estado Aceso (O JavaScript vai ativar e desativar isso no corpo do site) */
+body.neon-ligado .task-card:not(.done) {
+  border-left-color: #00ff41; 
+  box-shadow: -5px 0 10px rgba(0, 255, 64, 0.518);
 }
 
 /* 3. Transferindo as cores da prioridade para o fundo (com transparência) */
-/* Usamos RGBA com 0.15 para não atrapalhar a leitura do texto */
-
 .task-card.alta {
-  background-color: rgba(255, 0, 0, 0.15); /* Vermelho translúcido */
+  background-color: rgba(255, 0, 0, 0.15);
   border-right: 1px solid rgba(255, 0, 0, 0.3);
 }
 
 .task-card.média {
-  background-color: rgba(255, 215, 0, 0.1); /* Amarelo translúcido */
+  background-color: rgba(255, 215, 0, 0.1);
   border-right: 1px solid rgba(255, 215, 0, 0.2);
 }
 
 .task-card.baixa {
-  background-color: rgba(0, 100, 255, 0.15); /* Azul translúcido */
+  background-color: rgba(0, 100, 255, 0.15);
   border-right: 1px solid rgba(0, 100, 255, 0.3);
 }
 
 /* 4. Estilo do Texto para Legibilidade */
-/* Container que segura o texto da tarefa, prioridade e data */
 .task-content {
   flex: 1;
-  text-align: left; /* Força todo o texto a ficar na esquerda */
+  text-align: left; 
   display: flex;
   flex-direction: column;
-  gap: 4px; /* Dá um espacinho elegante entre o título, a prioridade e a data */
+  gap: 4px; 
 }
 
-/* Mantém o resto que você já tem: */
 .task-content h3 {
   margin: 0;
   color: #00ff41;
@@ -138,11 +127,11 @@
   color: #aaa;
   display: block;
   font-size: 0.85rem;
-  text-align: left; /* Reforço extra para a esquerda */
+  text-align: left; 
 }
+
 /* 5. Estado Concluído (Reseta tudo para cinza estático) */
 .task-card.done {
-  animation: none !important;
   background-color: rgba(50, 50, 50, 0.4) !important;
   border-left-color: #555 !important;
   border-right: none !important;

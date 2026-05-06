@@ -19,8 +19,6 @@ function App() {
   // Estados originais ( A memória da aplicação)
   const [taskText, setTaskText] = useState("");
   const [priority, setPriority] = useState("Baixa");
-
-  // CORREÇÃO AQUI: Em vez de começar com [], ele já tenta ler o localStorage na hora que nasce.
   const [taskList, setTaskList] = useState(() => {
     const saved = localStorage.getItem("@taskflow_data");
     return saved ? JSON.parse(saved) : [];
@@ -32,7 +30,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [editTaskText, setEditTaskText] = useState("");
-  const [editPriority, setEditPriority] = useState("Baixa");
+  const [editPriority, setEditPriority] = useState("Baixa"); // Prioridade na edição
 
 //   O useState sempre devolve duas coisas: o valor atual (ex: taskText) e uma função para alterar esse valor (ex: setTaskText).
 
@@ -63,6 +61,16 @@ function App() {
 //   Já esse useEffect tem o [taskList] no final. Isso significa: "Toda vez que a taskList mudar, rode isso".
 
 // Ele pega a lista atualizada, transforma em texto puro (JSON.stringify) e salva no localStorage. É isso que faz as tarefas não sumirem quando você atualiza a página!
+
+// =================================================================================================
+// Metrônomo Global para sincronizar o piscar do neon
+  useEffect(() => {
+    const relogio = setInterval(() => {
+      document.body.classList.toggle('neon-ligado');
+    }, 500); // 500ms aceso, 500ms apagado
+    
+    return () => clearInterval(relogio);
+  }, []);
 
 // =================================================================================================
 
@@ -100,7 +108,7 @@ function App() {
     ));
   };
 
-// toggleTask: Serve para marcar/desmarcar como concluída. Ele percorre a lista com o .map(). Quando acha a tarefa com o ID clicado, inverte o status dela (!t.completed). O resto ele devolve igualzinho.
+// toggleTask: Essa função é o famoso "Interruptor". Ela serve para inverter o status de uma tarefa: se está pendente, vira concluída; se está concluída, volta a ser pendente.
 
   // ===============================================================================================
 
@@ -111,7 +119,7 @@ function App() {
     }
   };
 
-// Abre aquela janelinha padrão do navegador perguntando "Tem certeza?". Se clicar em "OK", ele usa o .filter() para criar uma lista nova com todas as tarefas, exceto a que tem aquele ID.
+// Abre aquela janelinha padrão do navegador perguntando "Tem certeza?". Se clicar em "OK", ele usa o .filter() para criar uma lista nova com todas as tarefas, exceto a que tem aquele ID. É como se você passasse por uma fila de pessoas perguntando o nome. Quando encontra a "Maria", você manda ela colocar um chapéu. Todas as outras pessoas continuam exatamente como estavam, e a fila agora é uma "nova fila" onde apenas a Maria está de chapéu.
 
   // ===============================================================================================
 
@@ -281,3 +289,52 @@ function App() {
 }
 
 export default App;
+
+
+/*
+================================================================================
+                    FLUXOGRAMA DO TASKFLOW (MARKDOWN/TEXTO)
+================================================================================
+
+ [ INÍCIO: Navegador abre o App ]
+          |
+          v
+ [ LER DISCO RÍGIDO (localStorage) ]
+          |
+          +---> Tem dados salvos? ----> (Sim) -> [ Carrega na taskList ]
+          |
+          +---> Não tem dados? -------> (Não) -> [ taskList = [] (vazia) ]
+          |
+          v
+ [ RENDERIZA A TELA (JSX) ] <-----------------------------------------+
+          |                                                           |
+          v                                                           |
+ === O QUE O USUÁRIO FAZ? =========================================   |
+   |                                                              |   |
+   |--> Digita nova tarefa + "Criar" ---> [ addTask() ]           |   |
+   |                                                              |   |
+   |--> Clica em "Concluir/Reabrir" ----> [ toggleTask() ]        |   | (Filtros e Busca)
+   |                                                              |   | alteram a view
+   |--> Clica em "Remover" + "OK" ------> [ deleteTask() ]        |   | na hora, sem
+   |                                                              |   | tocar no HD.
+   |--> Clica em "Editar" + "Salvar" ---> [ saveEdit() ]          |   |
+   |                                                              |   |
+   |--> Usa Filtros / Barra de Busca ---> [ processedTasks ] -----+---+
+   |                                                              
+ ==================================================================   
+          |
+          v
+ (As 4 primeiras ações acima alteram a memória central: taskList)
+          |
+          v
+ [ ESTADO 'taskList' É ATUALIZADO ]
+          |
+          +---> 1. O React avisa a interface e recarrega a [ Renderização JSX ]
+          |
+          +---> 2. O `useEffect` detecta a mudança e ativa o Salvar Automático
+                   |
+                   v
+          [ SALVA TUDO NO localStorage (Formato JSON) ]
+
+================================================================================
+*/
